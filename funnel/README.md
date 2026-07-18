@@ -16,15 +16,20 @@ A two-page Google Ads funnel for cold homeowner traffic. Vanilla HTML/CSS/JS, no
 
 ## Before going live — checklist
 
-1. **Add real photos.** Create an `images/` folder and add photos from the
-   client Dropbox folder:
-   - `images/hero.jpg` — wide, high-quality renovation shot (referenced in `.hero`).
-   - `images/mechanism.jpg` — wide project photo (referenced in `.mechanism__media`).
-   - For the proof gallery, give each `<figure class="shot">` a real photo:
-     add `class="shot has-photo"` and an inline
-     `style="background-image:url('images/project-1.jpg');background-size:cover;background-position:center;"`.
-   Placeholders are labelled blocks until real photos are added — the page
-   still works without them.
+1. **Photos — currently embedded from Google Drive.** The hero, mechanism
+   section and both galleries pull real project photos directly from the
+   client's shared Google Drive folder via Google's image CDN
+   (`https://drive.google.com/thumbnail?id=<FILE_ID>&sz=w####`). They render
+   because the folder is shared "anyone with the link."
+
+   **Recommended before scaling ad spend: self-host these files.** Drive is not
+   a CDN — it can be slower and Google may rate-limit or change the endpoint.
+   To self-host: download the originals, drop them in `images/`, and replace
+   each `https://drive.google.com/thumbnail?...` URL in `landing.html` /
+   `thank-you.html` with `images/<name>.jpg`. Resize to ~1600–2000px wide and
+   compress to keep the page fast. The `.hero` / `.mechanism__media` rules in
+   `styles.css` already point at `images/hero.jpg` / `images/mechanism.jpg` as
+   the local fallback.
 
 2. **Tracking codes.** Paste GTM / GA4 / Meta Pixel into the clearly-marked
    comments in the `<head>` and after `<body>` on **every** page. The
