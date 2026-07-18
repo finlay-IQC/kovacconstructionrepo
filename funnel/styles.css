@@ -411,7 +411,9 @@ h2.section__title { font-size: 28px; }
 .form-embed { width: 100%; }
 .form-embed iframe {
   width: 100%;
-  min-height: 880px;
+  height: 874px;        /* concrete height so the form shows even before/without
+                           GHL's auto-resize script runs */
+  min-height: 720px;
   border: none;
   border-radius: var(--radius);
   display: block;
