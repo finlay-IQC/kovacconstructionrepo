@@ -362,6 +362,46 @@ h2.section__title { font-size: 28px; }
 .shot__cap span { display: block; font-weight: 400; font-size: 13px; color: #d8d2c7; }
 
 /* ==========================================================================
+   REVIEWS
+   ========================================================================== */
+.reviews__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.review {
+  margin: 0;
+  padding: 26px 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.review__stars {
+  color: var(--bronze);
+  letter-spacing: 2px;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.review__text {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: #f0ebe1;
+  margin: 0 0 12px;
+}
+.review__who {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bronze);
+  margin: 0;
+}
+.review__who span { color: #b7b1a6; font-weight: 400; }
+
+@media (min-width: 800px) {
+  .reviews__grid { grid-template-columns: 1fr 1fr; column-gap: 48px; }
+}
+
+/* ==========================================================================
    FAQ ACCORDION
    ========================================================================== */
 .faq { max-width: 760px; margin: 0 auto; }

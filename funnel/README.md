@@ -49,5 +49,6 @@ A two-page Google Ads funnel for cold homeowner traffic. Vanilla HTML/CSS/JS, no
 ## Notes
 - Colours follow the Kovacs brand: charcoal `#1b1b1b`, warm bronze `#c29a5b`,
   soft off-white `#f5f1ea`.
-- Proof figures used: 5.0 Houzz rating, 100+ projects, 35+ years' building
-  experience, Best of Houzz. Confirm these before launch.
+- Proof figures used: 4.9 Houzz rating from 58 reviews, 100+ projects, 35+
+  years' building experience, Best of Houzz. The reviews section uses real
+  named Houzz testimonials. Confirm these before launch.
