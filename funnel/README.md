@@ -5,7 +5,9 @@ A two-page Google Ads funnel for cold homeowner traffic. Vanilla HTML/CSS/JS, no
 ## Files
 ```
 /funnel
-  landing.html     Main landing page (hero → form → proof → FAQ → final CTA)
+  index.html       Main landing page, served at the site root "/"
+                   (hero → form → proof → reviews → FAQ → final CTA)
+  landing.html     Redirect stub → "/" (keeps old /landing.html links working)
   thank-you.html   Post-submit confirmation ("we'll call you shortly")
   privacy.html     Privacy policy placeholder
   terms.html       Terms of service placeholder
