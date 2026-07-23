@@ -45,7 +45,7 @@ A two-page Google Ads funnel for cold homeowner traffic. Vanilla HTML/CSS/JS, no
    `msclkid`. `script.js` appends captured values to the iframe URL and to the
    internal link to `thank-you.html`.
 
-4. **Phone number.** Currently `07711 788515` (placeholder per brief). Update
+4. **Phone number.** Currently `07782 242936` (placeholder per brief). Update
    the `tel:` links and visible number if it changes.
 
 ## Notes
