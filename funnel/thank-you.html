@@ -48,18 +48,12 @@
       <h2 class="section__title">A quick message from the team</h2>
     </div>
     <div class="ty-video">
-      <div class="ty-video__frame">
-        <!-- Video embedded from the client Google Drive folder (188MB file,
-             streamed by Google's player rather than self-hosted). For faster,
-             more reliable playback later, host on YouTube/Vimeo (unlisted) and
-             swap this iframe src. -->
-        <iframe
-          src="https://drive.google.com/file/d/1daJekqYUzoy_lYom_YYEx0yLd8Z3e5D8/preview"
-          title="A quick message from Kovacs Construction"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          loading="lazy"></iframe>
-      </div>
+      <!-- Self-hosted, web-compressed copy of the client's thank-you video. -->
+      <video controls playsinline preload="metadata" poster="videos/thank-you-poster.jpg">
+        <source src="videos/thank-you.mp4" type="video/mp4" />
+        Your browser can’t play this video.
+        <a href="videos/thank-you.mp4">Download it here</a>.
+      </video>
     </div>
   </div>
 </section>
