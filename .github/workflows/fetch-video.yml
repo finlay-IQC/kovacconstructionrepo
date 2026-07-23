@@ -18,6 +18,9 @@ jobs:
       - name: Install gdown
         run: pip install --quiet gdown
 
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
       - name: Download source video from Drive
         run: |
           python - <<'PY'
