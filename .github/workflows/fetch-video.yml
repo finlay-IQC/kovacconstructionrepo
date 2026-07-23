@@ -20,7 +20,10 @@ jobs:
 
       - name: Download source video from Drive
         run: |
-          gdown id=1daJekqYUzoy_lYom_YYEx0yLd8Z3e5D8 -O source.mp4
+          python - <<'PY'
+          import gdown
+          gdown.download(id="1daJekqYUzoy_lYom_YYEx0yLd8Z3e5D8", output="source.mp4", quiet=False)
+          PY
           ls -lh source.mp4
 
       - name: Compress for web (720p, faststart) + poster
