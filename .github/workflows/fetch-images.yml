@@ -1,0 +1,76 @@
+name: Fetch project images from Drive
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: claude/kovacs-construction-funnel-f0rbv6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: pip install --quiet gdown Pillow
+
+      - name: Download and resize images
+        run: |
+          python - <<'PY'
+          import gdown, os
+          from PIL import Image, ImageOps
+
+          FILES = {
+              "evelyn-road.jpg": "1Gj6U58fiKEa9kVkZ6LKqd61HWB4nCncx",
+              "mechanism.jpg":   "15JVzXRzK8_tQoe3Z7ltJ4R6Ab2xPKmod",
+              "kitchen-1.jpg":   "1gjHbs4tXbkReDThNVHcWI9LpwotU2MlA",
+              "refurb-1.jpg":    "1SAPxOdlOP8nHfldRkEx105Md5Pwv4RMt",
+              "interior-1.jpg":  "153jzD6dZ__KLScf2OqaplEntAFIRlwQb",
+              "kitchen-3.jpg":   "14b4ZhlUP1PLqougUT981fLS8YdEutPun",
+              "refurb-2.jpg":    "1VE9VG1JLwmJKEXaMj34hyh92MTq0yqX3",
+              "interior-2.jpg":  "1tbOrIWLOgs05-4xhnmy6aJrJyqdFICF2",
+              "project-1.jpg":   "10dFp6J3KaKz_OYLYOiycYMUaNZm3lYXa",
+          }
+
+          os.makedirs("funnel/images", exist_ok=True)
+          ok, fail = [], []
+          for name, fid in FILES.items():
+              out = f"funnel/images/{name}"
+              try:
+                  gdown.download(id=fid, output=out, quiet=False)
+                  im = Image.open(out)
+                  im = ImageOps.exif_transpose(im).convert("RGB")
+                  im.thumbnail((2000, 2000))
+                  im.save(out, "JPEG", quality=82, optimize=True)
+                  ok.append(name)
+                  print(f"OK  {name}  {os.path.getsize(out)//1024} KB")
+              except Exception as e:
+                  fail.append(name)
+                  print(f"FAIL {name}: {e}")
+                  if os.path.exists(out):
+                      os.remove(out)
+
+          print("DOWNLOADED:", ", ".join(ok) or "none")
+          print("FAILED:", ", ".join(fail) or "none")
+          PY
+
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add funnel/images
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Add self-hosted project images (downloaded from client Drive)"
+            git push origin HEAD:claude/kovacs-construction-funnel-f0rbv6
+          fi
